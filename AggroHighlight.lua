@@ -45,7 +45,6 @@ local function CompactUnitFrame_UpdateAggroHighlight(frame)
     local displayedUnit = frame.displayedUnit
 
     if not UnitExists(displayedUnit) or displayedUnit:find("target$") then
-        print('hide '..displayedUnit)
         aggroHighlight:Hide()
         return
     end
@@ -53,11 +52,9 @@ local function CompactUnitFrame_UpdateAggroHighlight(frame)
     local status = UnitThreatSituation(displayedUnit)
 
     if status and status > 0 then
-    print('show '..displayedUnit)
         aggroHighlight:SetVertexColor(GetThreatStatusColor(status))
         aggroHighlight:Show()
     else
-    print('hide '..displayedUnit)
         aggroHighlight:Hide()
     end
 end
@@ -183,3 +180,12 @@ hooksecurefunc(
         end
     end
 )
+
+
+SLASH_AggroHighlight1 = "/ah"
+    SlashCmdList["AggroHighlight"] = function(arg1)
+        DEFAULT_CHAT_FRAME:AddMessage("AGGRO HIGHLIGHT:")
+        DEFAULT_CHAT_FRAME:AddMessage("1 Not tanking anything, but have higher threat than tank on at least one unit.",1, 1, 0.47);
+        DEFAULT_CHAT_FRAME:AddMessage("2 Insecurely tanking at least one unit, but not securely tanking anything.",1, 0.6, 0);
+        DEFAULT_CHAT_FRAME:AddMessage("3 Securely tanking at least one unit.",1, 0, 0);
+    end
