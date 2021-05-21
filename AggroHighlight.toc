@@ -1,0 +1,6 @@
+## Interface: 20501
+## Title: AggroHighlight
+## Notes: Aggro highlights on default raid frames
+## Author: Keatan Bauer
+
+AggroHighlight.xml
